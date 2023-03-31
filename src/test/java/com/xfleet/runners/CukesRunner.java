@@ -21,8 +21,8 @@ import org.junit.runner.RunWith;
 
         dryRun = false,
 
-        tags = "@smoke"
-         //publish = true
+        tags = "@XFLEET10-885",
+        publish = true
 
 )
 public class CukesRunner {
