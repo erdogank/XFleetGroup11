@@ -49,7 +49,7 @@ Feature: As a user, I should be able to use the "Driver" filter under the Fleet-
   @XFLEET10-818
   Scenario:5- When user selects "Starts-with" method with a keyword, the results should start with the specified keyword
     When user click filter dropdown under Driver:All
-    And  select "Starts-with"
+    And  select Starts-with
     And  type "Ah"
     And  click upload button
     Then the results should start with the "Ah"
@@ -58,22 +58,22 @@ Feature: As a user, I should be able to use the "Driver" filter under the Fleet-
   Scenario:6- When user selects "Ends With" method with a keyword, the results should end with the specified keyword
 
     When user click filter dropdown under Driver:All
-    And  select "Ends With"
-    And  type "ty"
+    And  select Ends With
+    And  type "on"
     And  click upload button
-    Then the results should end with the "ty"
+    Then the results should end with the "on"
 
   @XFLEET10-820
   Scenario:7- When user selects "Is Equal to" method with a keyword, the results should match the specified keyword exactly
 
     When user click filter dropdown under Driver:All
-    And  select "Is Equal to"
-    And  type "Adelaida Daugherty"
+    And  select Is Equal to
+    And  type "Dulce Reichert"
     And  click upload button
-    Then the results should match the "Adelaida Daugherty" exactly
+    Then the results should match the "Dulce Reichert" exactly
 
   @XFLEET10-821
-  Scenario Template:8- Methods  ("Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to") shouldn't accept non-alphabetical characters
+  Scenario Outline:8- Methods  ("Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to") shouldn't accept non-alphabetical characters
 
     When user click filter dropdown under Driver:All
     When user select Starts With
