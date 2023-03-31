@@ -218,8 +218,5 @@ public class Delete_A_Car_Steps {
         numberOfPages = vehiclesPage.getNumber(vehiclesPage.numberOfPages);
     }
 
-    @Given("The user is on the log in page")
-    public void theUserIsOnTheLogInPage() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("env"));
-    }
+
 }
