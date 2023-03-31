@@ -215,4 +215,6 @@ public class Delete_A_Car_Steps {
         numberOfRecords = vehiclesPage.getNumber(vehiclesPage.numberOfRecords);
         numberOfPages = vehiclesPage.getNumber(vehiclesPage.numberOfPages);
     }
+
+
 }

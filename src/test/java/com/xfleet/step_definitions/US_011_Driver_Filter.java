@@ -11,11 +11,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class US_011_Driver_Filter {
+
     DriverFilterPage driverFilterPage = new DriverFilterPage();
-    LoginPage loginpage = new LoginPage();
+    //LoginPage loginpage = new LoginPage();
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
 
 
     @Given("click manage filters")
@@ -57,7 +61,7 @@ public class US_011_Driver_Filter {
     public void click_upload_button() {
 
         driverFilterPage.uploadbutton.click();
-       // BrowserUtils.waitFor(1);
+       BrowserUtils.waitFor(2);
 
 
     }
@@ -78,6 +82,7 @@ public class US_011_Driver_Filter {
 
         String actualKeyword = driverFilterPage.driverColumntd3.getText();
         System.out.println(actualKeyword);
+        BrowserUtils.waitFor(1);
 
         Assert.assertFalse(actualKeyword.contains(string));
 
@@ -92,15 +97,17 @@ public class US_011_Driver_Filter {
     @Then("usual result shouldn't be appeared\\(No entities were found to match your search)")
     public void usual_result_shouldn_t_be_appeared_no_entities_were_found_to_match_your_search() {
 
-        // driverFilterPage.uploadbutton.isDisplayed();
-        driverFilterPage.nodatafound.isDisplayed();
 
+       Assert.assertFalse( driverFilterPage.nodatafound.isDisplayed());
+        //driverFilterPage.uploadbutton.isDisplayed();
     }
 
     @And("user click fleet module")
     public void userClickFleetModule() {
 
         driverFilterPage.fleetDropdown.click();
+        BrowserUtils.waitFor(1);
+
 
     }
 
@@ -111,12 +118,13 @@ public class US_011_Driver_Filter {
 
         actions.moveToElement(driverFilterPage.fleetDropdown).
         moveToElement(driverFilterPage.vehicles).perform();
+        BrowserUtils.waitFor(1);
 
         driverFilterPage.vehicles.click();
 
-        BrowserUtils.waitFor(11);
+        wait.until(ExpectedConditions.visibilityOf(driverFilterPage.filtersSign));
 
-
+        BrowserUtils.waitFor(4);
 
     }
 
@@ -133,6 +141,8 @@ public class US_011_Driver_Filter {
         driverFilterPage.loginField.sendKeys(string);
         driverFilterPage.passwordField.sendKeys(string2);
         driverFilterPage.loginButton.click();
+
+
         // BrowserUtils.waitFor(3);
 
     }
@@ -167,11 +177,6 @@ public class US_011_Driver_Filter {
 
     }
 
-    @And("select {string}")//features.da endwith tırnak içinde yazmak gereksiz oldu.
-    public void select(String arg0) {
-        driverFilterPage.isequalto.click();
-
-    }
 
     @Then("the results should start with the {string}")
     public void theResultsShouldStartWithThe(String specifiedKeyword) {
@@ -189,6 +194,7 @@ public class US_011_Driver_Filter {
         String actualKeyword = driverFilterPage.driverColumntd3.getText();
         System.out.println(actualKeyword);
 
+        BrowserUtils.waitFor(1);
         Assert.assertTrue(actualKeyword.endsWith(specifiedKeyword));
     }
 
@@ -196,8 +202,24 @@ public class US_011_Driver_Filter {
     public void theResultsShouldMatchTheExactly(String specifiedKeyword) {
         String actualKeyword = driverFilterPage.driverColumntd3.getText();
         System.out.println(actualKeyword);
-
+        BrowserUtils.waitFor(1);
         Assert.assertEquals(actualKeyword, specifiedKeyword);
 
+    }
+
+    @And("select Starts-with")
+    public void selectStartsWith() {
+
+        driverFilterPage.startswith.click();
+    }
+
+    @And("select Ends With")
+    public void selectEndsWith() {
+        driverFilterPage.endswith.click();
+    }
+
+    @And("select Is Equal to")
+    public void selectIsEqualTo() {
+        driverFilterPage.isequalto.click();
     }
 }
