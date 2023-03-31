@@ -70,7 +70,7 @@ Feature: As a user, I should be able to use the "Driver" filter under the Fleet-
     And  select Is Equal to
     And  type "Dulce Reichert3"
     And  click upload button
-    Then the results should match the "Dulce Reichert" exactly
+    Then the results should match the "Dulce Reichert3" exactly
 
   @XFLEET10-821
   Scenario Outline:8- Methods  ("Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to") shouldn't accept non-alphabetical characters

@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
         plugin = {
-                //"pretty",
+                "pretty",
                 "html:target/cucumber-report.html",
                 "json:target/cucumber-report.json",
                 "junit:target/cucumber-report.xml",
@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
 
 
 
-        tags = "@XFLEET10-885",
+        tags = "@XFLEET10-822",
         publish = true
  
 
