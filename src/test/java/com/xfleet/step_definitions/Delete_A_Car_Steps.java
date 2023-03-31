@@ -198,13 +198,6 @@ public class Delete_A_Car_Steps {
 
     }
 
-    @And("he sees the number of record on top of the table")
-    public void heSeesTheNumberOfRecordOnTopOfTheTable() {
-
-        numberOfRecords = vehiclesPage.getNumber(vehiclesPage.numberOfRecords);
-        numberOfPages = vehiclesPage.getNumber(vehiclesPage.numberOfPages);
-
-    }
 
     @Then("the number must match with the row number")
     public void theNumberMustMatchWithTheRowNumber() {
@@ -213,4 +206,17 @@ public class Delete_A_Car_Steps {
         Assert.assertEquals(numberOfRecords,actualRowNumber);
 
     }
+
+
+
+
+
+    @And("s-he sees the number of record on top of the table")
+    public void sHeSeesTheNumberOfRecordOnTopOfTheTable() {
+
+        numberOfRecords = vehiclesPage.getNumber(vehiclesPage.numberOfRecords);
+        numberOfPages = vehiclesPage.getNumber(vehiclesPage.numberOfPages);
+    }
+
+
 }

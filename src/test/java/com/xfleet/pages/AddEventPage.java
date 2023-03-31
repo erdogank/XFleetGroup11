@@ -2,6 +2,7 @@ package com.xfleet.pages;
 
 import com.xfleet.utilities.Driver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.internal.WebElementToJsonConverter;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -13,7 +14,7 @@ public class AddEventPage {
     @FindBy(xpath = "//span[@class='ui-dialog-title']")
     public WebElement addEventText;
 
-    @FindBy(xpath ="//i[.='Add Event']")
+    @FindBy(xpath ="(//a[@data-id='477'])[2]")
     public WebElement addEventButton;
 
     @FindBy(name = "oro_calendar_event_form[title]")
@@ -34,6 +35,9 @@ public class AddEventPage {
     @FindBy(xpath = "//button[@type='reset']")
     public WebElement cancelButton;
 
+    @FindBy(xpath = "//button[@title='close']")
+    public WebElement closeButton;
+
     @FindBy(xpath = "//span[@title='#FF887C']")
     public WebElement selectColor;
 
@@ -46,7 +50,7 @@ public class AddEventPage {
     @FindBy(xpath = "(//input[@type='checkbox'])[3]")
     public WebElement repeatCheckBox;
 
-    @FindBy(xpath ="//select[@id='recurrence-repeats-view121']")
+    @FindBy(xpath ="//select[@data-name='recurrence-repeats']")
     public WebElement repeatOptions;
 
     @FindBy(xpath ="(//input[@type='radio'])[3]")
