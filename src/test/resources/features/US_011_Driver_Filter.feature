@@ -68,7 +68,7 @@ Feature: As a user, I should be able to use the "Driver" filter under the Fleet-
 
     When user click filter dropdown under Driver:All
     And  select Is Equal to
-    And  type "Dulce Reichert"
+    And  type "Dulce Reichert2"
     And  click upload button
     Then the results should match the "Dulce Reichert" exactly
 
