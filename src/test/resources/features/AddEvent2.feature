@@ -1,4 +1,4 @@
-@XFLEET10-841
+@smoke @XFLEET10-841
 Feature: As a store manager and sales manager, I should be able to add an event
 
 
