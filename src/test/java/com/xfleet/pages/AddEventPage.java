@@ -2,6 +2,7 @@ package com.xfleet.pages;
 
 import com.xfleet.utilities.Driver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.internal.WebElementToJsonConverter;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -33,6 +34,9 @@ public class AddEventPage {
 
     @FindBy(xpath = "//button[@type='reset']")
     public WebElement cancelButton;
+
+    @FindBy(xpath = "//button[@title='close']")
+    public WebElement closeButton;
 
     @FindBy(xpath = "//span[@title='#FF887C']")
     public WebElement selectColor;

@@ -49,7 +49,7 @@ public class AddEvent2_stepDefinitions {
 
     @When("user clicks on Add Event button")
     public void user_clicks_on_add_event_button() {
-        actions.moveToElement(addEventPage.addEventButton).pause(2000).moveToElement(addEventPage.addEventButton).click().perform();
+        actions.moveToElement(addEventPage.addEventButton).pause(1000).moveToElement(addEventPage.addEventButton).click().perform();
         vehiclesPage.waitForLoadingBarToDisappear();
         System.out.println("add event button is CLICKED");
     }
@@ -60,6 +60,7 @@ public class AddEvent2_stepDefinitions {
         vehiclesPage.waitForLoadingBarToDisappear();
         Assert.assertTrue(addEventPage.addEventText.isDisplayed());
         System.out.println("add event TITLE is DISPLAYED");
+        actions.moveToElement(addEventPage.closeButton).pause(500).click().perform();
     }
 
     @When("user selects color")
@@ -83,6 +84,7 @@ public class AddEvent2_stepDefinitions {
         else{
             System.out.println("button is NOT SELECTED");
         }
+        actions.moveToElement(addEventPage.closeButton).pause(500).click().perform();
     }
     @When("user selects repeat Checkbox")
     public void user_selects_repeat_checkbox() {
@@ -98,6 +100,7 @@ public class AddEvent2_stepDefinitions {
         Assert.assertTrue(addEventPage.endNever.isEnabled());
         Assert.assertTrue(addEventPage.endAfter.isEnabled());
         Assert.assertTrue(addEventPage.endBy.isEnabled());
+        actions.moveToElement(addEventPage.closeButton).pause(500).click().perform();
     }
 
     @And("user clicks on any vehicle with an event")
@@ -120,5 +123,6 @@ public class AddEvent2_stepDefinitions {
     @Then("time-boxes disappear")
     public void time_boxes_disappear() {
         Assert.assertFalse(addEventPage.timeBox.isDisplayed());
+        actions.moveToElement(addEventPage.closeButton).pause(500).click().perform();
     }
 }
