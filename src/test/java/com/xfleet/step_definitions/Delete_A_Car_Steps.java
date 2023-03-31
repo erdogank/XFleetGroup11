@@ -52,12 +52,10 @@ public class Delete_A_Car_Steps {
     @When("choose Vehicles from Fleet menu")
     public void choose_vehicles_from_fleet_menu() {
 
-
         Actions actions = new Actions(Driver.getDriver());
 
         actions.moveToElement(basePage.fleetMenu).pause(2)
                 .moveToElement(basePage.vehiclesFromFleet).click().perform();
-
     }
     @When("hover over three dot menu on any row")
     public void hover_over_three_dot_menu_on_any_row() {
