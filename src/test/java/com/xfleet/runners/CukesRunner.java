@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
         glue = "com/xfleet/step_definitions",
         dryRun = false,
 
-        tags = ""
+        tags = "@XFLEET10-821"
          //publish = true
 
 )
