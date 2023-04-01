@@ -1,4 +1,4 @@
-@XFLEET10-808
+@XFLEET10-808 @XFLEET10-885
 Feature: As a 'Sales Manager' and 'Store Manager', I should be able to delete a car
 
   Background:
