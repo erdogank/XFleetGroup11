@@ -2,18 +2,29 @@ package com.xfleet.pages;
 
 import com.xfleet.utilities.BrowserUtils;
 import com.xfleet.utilities.Driver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VehiclesPage {
 
+    VehicleFilterMenuPage vehicleFilter = new VehicleFilterMenuPage();
+    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+
     public VehiclesPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
+
+    final String rowLocator = "//tr[.//td[contains(@class,'Driver') and contains(text(),'%s')]]";
 
     @FindBy(xpath = "//div[@class='loader-mask shown']/div")
     public List<WebElement> loaderMask;
@@ -23,11 +34,50 @@ public class VehiclesPage {
     @FindBy(xpath = "//tbody/tr[5]/td[2]")
     public WebElement anyRowLicencePlate;
 
+    @FindBy(xpath = rowLocator)
+    public WebElement vehiclePageTableRowElement;
+
+
+    public void selectRowByName(String name) {
+        Driver.getDriver().findElement(By.xpath(String.format("//tr[.//td[contains(@class,'Driver') and contains(text(),'%s')]]", name))).click();
+    }
+
+    public String getVehicleInfoByNameAndIndex(String name, int index) {
+        wait.until(ExpectedConditions.visibilityOf(threeDotMenu));
+        return Driver.getDriver().findElement(By.xpath(String.format("//tr[.//td[contains(@class,'Driver') and contains(text(),'%s')]]/td[contains(@class,'body-cell g')][%s]", name, index))).getText();
+    }
+    public List<String> getAllVehicleInfoByName(String name) throws InterruptedException {
+        List<String> infoList = new ArrayList<>();
+        for (int i = 2; i < 21; i++) {
+            infoList.add(getVehicleInfoByNameAndIndex(name,i));
+        }
+        System.out.println(infoList.toString());
+        return infoList;
+    }
+
     @FindBy(xpath = "//tbody/tr[5]/td[@class='action-cell grid-cell grid-body-cell']/div/div/a")
     public WebElement threeDotMenu;
 
     @FindBy(css= "li[class='launcher-item']:nth-child(3)")
     public WebElement deleteButtonOfThreeDotMenu;
+
+    @FindBy(xpath= "(//a[@title='View'])[1]")
+    public WebElement eyeIconOfThreeDotMenu;
+
+    public void clickEyeIconByRowName(String name) {
+        WebElement threeDotElement = Driver.getDriver().findElement(By.xpath(String.format("//tr[.//td[contains(@class,'Driver') and contains(text(),'%s')]]//td[contains(@class,'action-cell')]", name)));
+
+        new Actions(Driver.getDriver())
+                .moveToElement(threeDotElement)
+                .perform();
+        threeDotElement.click();
+        wait.until(ExpectedConditions.elementToBeClickable(eyeIconOfThreeDotMenu));
+        eyeIconOfThreeDotMenu.click();
+    }
+
+    @FindBy(css= "li[class='launcher-item']:nth-child(2)")
+    public WebElement editIconOfThreeDotMenu;
+
 
     @FindBy(css = ".modal-header>h3")
     public WebElement deleteConfirmation;
@@ -74,11 +124,32 @@ public class VehiclesPage {
     public WebElement licensePlateButton;
 
 
-    @FindBy(xpath = "//tbody/tr/td[1]")
+    @FindBy(xpath = "//tbody/tr[1]/td[1]")
     public WebElement firstRowOfLicencePlate;
 
+    @FindBy(xpath = "(//tbody/tr/td[2])[1]")
+    public WebElement firstRowOfLicencePlateAfterSortingAndFiltering;
+
+    @FindBy(xpath = "//a[@title='Reset']")
+    public WebElement resetButton;
+
+    @FindBy(xpath = "//div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value']")
+    public WebElement locationButton;
+
+    @FindBy(xpath = "(//input[@type='text'])[2]")
+    public WebElement locationInputBox;
+
+    @FindBy(xpath = "//input[@id='ui-multiselect-0-0-option-3']")
+    public WebElement locationCheckBox;
 
 
+
+    public void activatingLocationFilter() throws InterruptedException {
+        vehicleFilter.manageFiltersBtn.click();
+        Thread.sleep(2000);
+        js.executeScript("arguments[0].click();", locationCheckBox);
+        //locationCheckBox.click();
+    }
 
     @FindBy(xpath ="//td[3]")
     public WebElement firstData;
@@ -144,8 +215,6 @@ public class VehiclesPage {
 
     public int getWholeRowNumber(){
         List<WebElement> wholeList = new ArrayList<>();
-
-
         int i = 1;
         while(i<= getNumber(numberOfPages) ){
             List<WebElement> vehicleRows = new ArrayList<>();
@@ -157,15 +226,15 @@ public class VehiclesPage {
             i++;
         }
         return wholeList.size();
-
-
-
     }
 
 
 
 
-
-
-
 }
+
+
+
+
+
+

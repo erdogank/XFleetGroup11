@@ -52,12 +52,10 @@ public class Delete_A_Car_Steps {
     @When("choose Vehicles from Fleet menu")
     public void choose_vehicles_from_fleet_menu() {
 
-
         Actions actions = new Actions(Driver.getDriver());
 
         actions.moveToElement(basePage.fleetMenu).pause(2)
                 .moveToElement(basePage.vehiclesFromFleet).click().perform();
-
     }
     @When("hover over three dot menu on any row")
     public void hover_over_three_dot_menu_on_any_row() {
@@ -198,13 +196,6 @@ public class Delete_A_Car_Steps {
 
     }
 
-    @And("he sees the number of record on top of the table")
-    public void heSeesTheNumberOfRecordOnTopOfTheTable() {
-
-        numberOfRecords = vehiclesPage.getNumber(vehiclesPage.numberOfRecords);
-        numberOfPages = vehiclesPage.getNumber(vehiclesPage.numberOfPages);
-
-    }
 
     @Then("the number must match with the row number")
     public void theNumberMustMatchWithTheRowNumber() {
@@ -213,4 +204,17 @@ public class Delete_A_Car_Steps {
         Assert.assertEquals(numberOfRecords,actualRowNumber);
 
     }
+
+
+
+
+
+    @And("s-he sees the number of record on top of the table")
+    public void sHeSeesTheNumberOfRecordOnTopOfTheTable() {
+
+        numberOfRecords = vehiclesPage.getNumber(vehiclesPage.numberOfRecords);
+        numberOfPages = vehiclesPage.getNumber(vehiclesPage.numberOfPages);
+    }
+
+
 }
