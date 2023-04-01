@@ -27,13 +27,14 @@ public class Vehicle_Table_View_StepDefinitions {
     public void user_sees_all_vehicle_information() {
         vehiclesPage.waitForLoadingBarToDisappear();
         Assert.assertTrue(vehicle_table_view_page.allVehicleInfoTable.isDisplayed() ) ;
+        BrowserUtils.sleep(3);
     }
 
     @Then("users see the total page number")
     public void usersSeeTheTotalPageNumber() {
         vehiclesPage.waitForLoadingBarToDisappear();
        Assert.assertTrue(vehicle_table_view_page.totalPageNumber.isDisplayed());
-
+        BrowserUtils.sleep(3);
     }
 
     @And("user should go to next page clicking > button")
@@ -45,6 +46,7 @@ public class Vehicle_Table_View_StepDefinitions {
 
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("arguments[0].click();",vehicle_table_view_page.rightClickButton);
+        BrowserUtils.sleep(3);
 
     }
 
@@ -53,10 +55,11 @@ public class Vehicle_Table_View_StepDefinitions {
     public void userShouldGoToPreviousPageClickingButton() {
         vehiclesPage.waitForLoadingBarToDisappear();
         Actions actions=new Actions(Driver.getDriver());
-        actions.moveToElement(vehicle_table_view_page.leftClickButton).perform();
-
+        actions.moveToElement(vehicle_table_view_page.leftClickButton).click().perform();
+        BrowserUtils.sleep(3);
+/*
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-        js.executeScript("arguments[0].click();",vehicle_table_view_page.leftClickButton);
+        js.executeScript("arguments[0].click();",vehicle_table_view_page.leftClickButton);*/
 
     }
 
