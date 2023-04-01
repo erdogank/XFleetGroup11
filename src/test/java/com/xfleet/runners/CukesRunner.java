@@ -25,7 +25,7 @@ import org.junit.runner.RunWith;
 
         tags = "@XFLEET10-885",
         publish = true
- 
+
 
 )
 public class CukesRunner {
