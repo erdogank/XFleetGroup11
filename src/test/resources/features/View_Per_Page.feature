@@ -1,5 +1,5 @@
 
-@XFLEET10-704
+@XFLEET10-704 @XFLEET10-899
 Feature: As a user, I should be able to arrange vehicle table data under Fleet-Vehicle page
   Background:
     Given user should be on the login page
