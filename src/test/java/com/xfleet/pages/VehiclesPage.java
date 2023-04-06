@@ -16,15 +16,14 @@ import java.util.List;
 
 public class VehiclesPage {
 
-    VehicleFilterMenuPage vehicleFilter = new VehicleFilterMenuPage();
-    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+
+
 
     public VehiclesPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    final String rowLocator = "//tr[.//td[contains(@class,'Driver') and contains(text(),'%s')]]";
+
 
     @FindBy(xpath = "//div[@class='loader-mask shown']/div")
     public List<WebElement> loaderMask;
@@ -34,26 +33,7 @@ public class VehiclesPage {
     @FindBy(xpath = "//tbody/tr[5]/td[2]")
     public WebElement anyRowLicencePlate;
 
-    @FindBy(xpath = rowLocator)
-    public WebElement vehiclePageTableRowElement;
 
-
-    public void selectRowByName(String name) {
-        Driver.getDriver().findElement(By.xpath(String.format("//tr[.//td[contains(@class,'Driver') and contains(text(),'%s')]]", name))).click();
-    }
-
-    public String getVehicleInfoByNameAndIndex(String name, int index) {
-        wait.until(ExpectedConditions.visibilityOf(threeDotMenu));
-        return Driver.getDriver().findElement(By.xpath(String.format("//tr[.//td[contains(@class,'Driver') and contains(text(),'%s')]]/td[contains(@class,'body-cell g')][%s]", name, index))).getText();
-    }
-    public List<String> getAllVehicleInfoByName(String name) throws InterruptedException {
-        List<String> infoList = new ArrayList<>();
-        for (int i = 2; i < 21; i++) {
-            infoList.add(getVehicleInfoByNameAndIndex(name,i));
-        }
-        System.out.println(infoList.toString());
-        return infoList;
-    }
 
     @FindBy(xpath = "//tbody/tr[5]/td[@class='action-cell grid-cell grid-body-cell']/div/div/a")
     public WebElement threeDotMenu;
@@ -64,16 +44,6 @@ public class VehiclesPage {
     @FindBy(xpath= "(//a[@title='View'])[1]")
     public WebElement eyeIconOfThreeDotMenu;
 
-    public void clickEyeIconByRowName(String name) {
-        WebElement threeDotElement = Driver.getDriver().findElement(By.xpath(String.format("//tr[.//td[contains(@class,'Driver') and contains(text(),'%s')]]//td[contains(@class,'action-cell')]", name)));
-
-        new Actions(Driver.getDriver())
-                .moveToElement(threeDotElement)
-                .perform();
-        threeDotElement.click();
-        wait.until(ExpectedConditions.elementToBeClickable(eyeIconOfThreeDotMenu));
-        eyeIconOfThreeDotMenu.click();
-    }
 
     @FindBy(css= "li[class='launcher-item']:nth-child(2)")
     public WebElement editIconOfThreeDotMenu;
@@ -144,12 +114,7 @@ public class VehiclesPage {
 
 
 
-    public void activatingLocationFilter() throws InterruptedException {
-        vehicleFilter.manageFiltersBtn.click();
-        Thread.sleep(2000);
-        js.executeScript("arguments[0].click();", locationCheckBox);
-        //locationCheckBox.click();
-    }
+
 
     @FindBy(xpath ="//td[3]")
     public WebElement firstData;
