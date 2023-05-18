@@ -29,9 +29,9 @@ public class VehiclesPage {
     @FindBy(xpath = "//div[@class='loader-mask shown']/div")
     public List<WebElement> loaderMask;
 
-    @FindBy(css = "tbody>tr:nth-child(5)")
+    @FindBy(css = "tbody>tr:nth-child(1)")
     public WebElement anyRow;
-    @FindBy(xpath = "//tbody/tr[5]/td[2]")
+    @FindBy(xpath = "//tbody/tr[1]/td[2]")
     public WebElement anyRowLicencePlate;
 
     @FindBy(xpath = rowLocator)
@@ -55,7 +55,7 @@ public class VehiclesPage {
         return infoList;
     }
 
-    @FindBy(xpath = "//tbody/tr[5]/td[@class='action-cell grid-cell grid-body-cell']/div/div/a")
+    @FindBy(xpath = "//tbody/tr[1]/td[@class='action-cell grid-cell grid-body-cell']/div/div/a")
     public WebElement threeDotMenu;
 
     @FindBy(css= "li[class='launcher-item']:nth-child(3)")

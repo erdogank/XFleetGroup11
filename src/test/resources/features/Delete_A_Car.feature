@@ -21,7 +21,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to delete a 
       | salesmanager101 | UserUser123 |
 
 
-  @XFLEET10-803
+  @XFLEET10-803 @smoke
   Scenario Outline:  "Delete Confirmation" pop up should be displayed when the user clicks on the delete button
     When user logins with his her "<userName>" and "<passWord>"
     And choose Vehicles from Fleet menu
