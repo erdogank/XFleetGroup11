@@ -42,14 +42,11 @@ public class Driver {
             switch (browserType){
                 case "chrome":
 
-                    ChromeOptions options = new ChromeOptions();
-                    options.addArguments("-headless");
-                    options.addArguments("-no-sandbox");
-                    options.addArguments("-disable-dev-shm-usage");
+
 
 
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(options);
+                    driver = new ChromeDriver();
                     driver.manage().window().maximize();
                     driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
                     break;
